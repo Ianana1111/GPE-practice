@@ -1,3 +1,4 @@
 # GPE-PRACTICE
-Welcome to my learing space!  
-Here contains both easy and hard DSA problems(not many), you can check it whatever you want
+Hi I'm Ian.
+Welcome to my learning space!  
+I upload both easy and hard DSA problems(not many) here, feel free to check out.
