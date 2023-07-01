@@ -9,23 +9,26 @@ int main(){
     map<int ,int> rec;
     while(cin >> n){
         comp.resize(n);
+        rec.clear();
         for(int i=0; i<n; i++){
             cin >> comp[i];
             rec[comp[i]]++;
         }
         int mid = n/2;
         sort(comp.begin(), comp.end());
-        cout << comp[mid] << " " << rec[comp[mid]] << " ";
         if(n%2){
+            cout << comp[mid] << " " << rec[comp[mid]] << " ";
             cout << 1 << '\n';
         }else{
+            cout << comp[mid-1] << " ";
             if(comp[mid]==comp[mid-1]){
-                cout << 1 << '\n';
+                cout << rec[comp[mid-1]] << " " << 1 << '\n';
             }else{
-                cout << comp[mid] - comp[mid-1] +1 << '\n';
+                cout << rec[comp[mid-1]] + rec[comp[mid]] << " ";
+                cout << comp[mid] - comp[mid-1] + 1 << '\n';
             }
         }
     }
     return 0;
-} // 1 1 3 4 5
-// 1 3 8 10 12 13
+} //  1 4 8 10 11
+// 1 8 8 8 10
