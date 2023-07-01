@@ -28,6 +28,7 @@ void dfs(int x, int y){
 }
 
 int main(){
+    ios;
     int x, y;
     while(cin >> x >> y){
         memset(arr, '#', sizeof(arr));
@@ -35,13 +36,7 @@ int main(){
         for(int i=1; i<=x; i++){
             for(int j=1; j<=y; j++){
                 cin >> arr[i][j];
-            }
-            //cin >> arr[i];
-        }
-        for(int i=1; i<=x; i++){
-            for(int j=1; j<=y; j++){
-                cout << arr[i][j] << " \n"[j==y];
-            }
+            }  
         }
         int ans = 0;
         for(int i=1; i<=x; i++){

@@ -1,65 +1,37 @@
-#include<bits/stdc++.h>
+#include <iostream>
+#include <cstring>
+#include <algorithm>
 using namespace std;
-#define ios ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-#define ll long long
-#define vl vector<ll>
-#define pll pair<ll, ll>
-#define qp queue<pll>
-#define pb push_back
-#define mp make_pair
-#define f first
-#define s second 
-
-char arr[103][103];
-bool visit[103][103];
-pll dir[8] = {{-1, 0}, {-1, 1}, {0, 1}, {1, 1}, {1, 0}, {1, -1}, {0, -1}, {-1, -1}};
-
-void solve(){
-    int m, n, q;
-    memset(arr, '#', sizeof(arr));
-    memset(visit, false, sizeof(visit));
-    for(int i=1; i<=m; i++){
-        for(int j=1; j<=n; j++){
-            cin >> arr[i][j];
-        }
-    }
-    while(q--){
-        int r, c; cin >> r >> c; r++; c++;
-
-        qp record;
-        record.push(mp(r, c));
-        char pos = arr[r][c];
-        visit[r][c] = true;
-
-        int ans = 0, count = 0, maxx = 1;
-        while(!record.empty()){
-            count++;
-            pll now = record.front();
-            record.pop();
-            if(count==maxx){
-                ans++;
-                count = 0;
-                maxx = (ans+1)*4;
-            }
-            for(int i=0; i<8; i++){
-                if(!visit[now.f+dir[i].f][now.s+dir[i].s]){
-                    if(arr[now.f+dir[i].f][now.s+dir[i].s] == pos){
-                        record.push(mp(now.f+dir[i].f, now.s+dir[i].s));
-                        visit[now.f+dir[i].f][now.s+dir[i].s] = true;
-                    }else{
-                        cout << ans << '\n';
-                        return;
-                    }
+ 
+int t, m, n, q, a[105][105], mx[105][105], x, y, ans;
+char c;
+ 
+int main() {
+    memset(a, -1, sizeof(a));
+    cin >> t;
+    while (t--){
+        cin >> m >> n >> q;
+        for (int i = 0; i < m; i++){
+            for (int j = 0; j < n; j++){
+                cin >> c;
+                a[i][j] = (int)c;
+                if (i == 0 || j == 0) mx[i][j] = 1;
+                else if (a[i][j] == a[i-1][j] && a[i][j] == a[i-1][j-1] && a[i][j] == a[i][j-1]){
+                    mx[i][j] = min({mx[i-1][j], mx[i-1][j-1], mx[i][j-1]})+1 ;
                 }
+                else mx[i][j] = 1;
             }
         }
+        cout << m << " " << n << " " << q << "\n";
+        while (q--){
+            cin >> x >> y;
+            ans = 1;
+            for (int i = 1; i <= 100; i++){
+                if (x+i > m || y+i > n) break;
+                if (mx[x+i][y+i] >= ans+2) ans += 2;
+                else break;
+            }
+            cout << ans << "\n";
+        }
     }
-}
-
-int main(){
-    int n; cin >> n;
-    while(n--){
-        solve();
-    }
-    return 0;
 }

@@ -6,48 +6,41 @@ using namespace std;
 #define mp make_pair
 #define vll vector<pair<ll, ll>>
 
-// vector<vector<int>> arr = {{0, 0, 0, 0},
-//                       {2, 3, 5, 4,},
-//                       {6, 3, 1, 4,},
-//                       {2, 6, 5, 1,},
-//                       {2, 1, 5, 6,},
-//                       {1, 3, 6, 4,},
-//                       {5, 3, 2, 4}};
-
-int arr[7][4] = {0, 0, 0, 0,
-                 2, 3, 5, 4,
-                 6, 3, 1, 4,
-                 2, 6, 5, 1,
-                 2, 1, 5, 6,
-                 1, 3, 6, 4,
-                 5, 3, 2, 4};
-
 int main(){
-    int n;
-    while(cin >> n){
-        if(n==0) return 0;
-        int now = 1;
+    ios;
+    int n; 
+    while(cin >> n && n){
+        //            上 下 左 右 前 後
+        int arr[6] = {1, 6, 3, 4, 2, 5};
         for(int i=0; i<n; i++){
             string s; cin >> s;
-            if(s[0]=='n'){
-                now = arr[now][2];
-                //cout << arr[now][2] << '\n';
-            }else if(s[0]=='w'){
-                now = arr[now][3];
-                //cout << arr[now][3] << '\n';
-            }else if(s[0]=='s'){
-                now = arr[now][0];
-                //cout << arr[now][0] << '\n';
-            }else{
-                now = arr[now][1];
-                //cout << arr[now][1] << '\n';
+            if(s=="north"){
+                int tmp1 = arr[0], tmp2 = arr[1];
+                arr[0] = arr[5]; 
+                arr[1] = arr[4]; 
+                arr[5] = tmp2;
+                arr[4] = tmp1;
+            }else if(s=="south"){
+                int tmp1 = arr[0], tmp2 = arr[1];
+                arr[0] = arr[4]; 
+                arr[1] = arr[5]; 
+                arr[5] = tmp1;
+                arr[4] = tmp2;
+            }else if(s=="east"){
+                int tmp1 = arr[0], tmp2 = arr[1];
+                arr[0] = arr[2]; 
+                arr[1] = arr[3]; 
+                arr[2] = tmp2;
+                arr[3] = tmp1;
+            }else if(s=="west"){
+                int tmp1 = arr[0], tmp2 = arr[1];
+                arr[0] = arr[3]; 
+                arr[1] = arr[2]; 
+                arr[2] = tmp1;
+                arr[3] = tmp2;
             }
         }
-        cout << now << '\n';
+        cout << arr[0] << '\n';
     }
+    return 0;
 }
-
-//      2 
-//    3 1 4 6
-//      5    
-//

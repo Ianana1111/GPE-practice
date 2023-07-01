@@ -13,8 +13,9 @@ using namespace std;
 int len[1002][1002];
 
 int main(){
+    ios;
     string a, b;
-    while(cin >> a >> b){
+    while(getline(cin, a) && getline(cin, b)){ // 要用getline 因為char可能會有空格 但你不會知道 操
         memset(len, 0, sizeof(len));
         int size1 = a.size();
         int size2 = b.size();

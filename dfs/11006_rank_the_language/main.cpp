@@ -23,11 +23,14 @@ void dfs(int x, int y, char now){
     visit[x][y] = true;
     if(!visit[x-1][y] && mapp[x-1][y]==now){
         dfs(x-1, y, now);
-    }else if(!visit[x][y+1] && mapp[x][y+1]==now){
+    }
+    if(!visit[x][y+1] && mapp[x][y+1]==now){
         dfs(x, y+1, now);
-    }else if(!visit[x+1][y] && mapp[x+1][y]==now){
+    }
+    if(!visit[x+1][y] && mapp[x+1][y]==now){
         dfs(x+1, y, now);
-    }else if(!visit[x][y-1] && mapp[x][y-1]==now){
+    }
+    if(!visit[x][y-1] && mapp[x][y-1]==now){
         dfs(x, y-1, now);
     }
 }
@@ -49,7 +52,7 @@ void solve(){
                 dfs(i, j, mapp[i][j]);
                 if(record.count(mapp[i][j]))
                     record[mapp[i][j]]++;
-                else
+                else 
                     record[mapp[i][j]] = 1;
             }
         }
@@ -76,3 +79,16 @@ int main(){
     }
     return 0;
 }
+
+// 1
+// 10 10
+// aaaaaaaaaa
+// aaaaaaaaaa
+// aaaaaaaaaa
+// aaaaaaaaaa
+// ababababab
+// bababababa
+// aaaaaaaaaa
+// aaaaaaaaaa
+// aaaaaaaaaa
+// aaaaaaaaaa

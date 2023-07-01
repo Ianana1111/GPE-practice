@@ -6,29 +6,29 @@ using namespace std;
 #define pll pair<ll, ll>
 #define mp make_pair
 #define f first
-#define s second 
+#define s second  
 
-int direct[5][2] = {{-1, 0}, {0, -1}, {1, -1}, {1, 0}, {0, 1}};
+pll dir[5] = {{-1, 0}, {0, -1}, {1, -1}, {1, 0}, {0, 1}};
+pll pos[100001];
 
 int main(){
-    pll cood[110000];
-    for(int i=1, j=1, k=0; i<100000; i+=j, j+=6, k++){
-        cood[i] = mp(0, k);
-        for(int m=1; m<k; m++){
-            cood[i-m] = mp(m, k-m); 
-        }
-        int cur = i;
-        for(int m=0; m<5; m++){
-            for(int j=0; j<k; j++){
-                cood[cur+1].f = cood[cur].f + direct[m][0];
-                cood[cur+1].s = cood[cur].s + direct[m][1];
-                cur++;
+    pos[1]={0, 0};
+    for(int i=1, j=2; j<=100000; j+=(6*i+1), i++){
+        pos[j] = mp(0, i);
+        int count = 1;
+        for(int k=0; k<5; k++){
+            for(int t=0; t<i; t++){
+                int n = j+count;
+                pos[n] = mp(pos[n-1].f+dir[k].f, pos[n-1].s+dir[k].s);
+                count++;
             }
         }
+        for(int k=0 ; k<i; k++){
+            pos[j-k] = mp(k, i-k);
+        }
     }
-    int input;
-    while(cin >> input){
-        cout << cood[input].f << " " << cood[input].s << '\n';
+    int n;
+    while(cin >> n) {
+        cout << pos[n].f << " " << pos[n].s << '\n';
     }
-    return 0;
 }

@@ -6,12 +6,12 @@ using namespace std;
 int main(){
     ios;
     int n;
-    while(cin >> n){
-        if(n==0) return 0;
+    int counting=1;
+    while(cin >> n && n){
         int start; cin >> start;
         vector<int> path[102];
         int a, b;
-        while(cin >> a && cin >> b){
+        while(cin >> a >> b){
             if(a==0 && b==0) break;
             path[a].push_back(b);
         }
@@ -31,7 +31,7 @@ int main(){
             }
         }
         ll mx = -1;
-        int pos;
+        int pos = 0;
         for(int i=1; i<=n; i++){
             if(dis[i]>mx){
                 mx = dis[i];
@@ -39,6 +39,8 @@ int main(){
             }
             //cout << dis[i] << '\n';
         }
-        cout << mx << " "<< pos <<'\n';
+        cout << "Case " << counting++ << ": The longest path from " << start;
+        cout << " has length " << mx << ", finishing at " << pos << '.' << '\n';
+        cout << '\n';
     }
 }

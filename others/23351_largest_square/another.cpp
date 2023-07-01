@@ -13,19 +13,21 @@ using namespace std;
 char arr[103][103];
 
 void solve(){
+    ios;
     int m, n, q; cin >> m >> n >> q;
-    for(int i=0; i<m; i++){
-        cin >> arr[i];
+    for(int i=1; i<=m; i++){
+        for(int j=1; j<=n; j++){
+            cin >> arr[i][j];
+        }
     }
+    cout << m << " " << n << " " << q << '\n';
     while(q--){
         int r, c; cin >> r >> c;
+        r++; c++;
         char pos = arr[r][c];
         int ans = 0, record;
         bool check = false;
         for(int k=1; k<100; k+=2){
-            if(r-ans<0 || c-ans<0 || r-ans+k-1>=m || c-ans+k-1>=n){
-                break;
-            }
             for(int i = r-ans; i<r-ans+k; i++){
                 for(int j = c-ans; j<c-ans+k; j++){
                     if(arr[i][j]!=pos){

@@ -23,8 +23,9 @@ int main(){
         sort(rec.begin(), rec.end(), compare);
         int size = rec.size();
         for(int i=0; i<size; i++){
-            cout << rec[i] << " \n"[i==size-1];
+            cout << rec[i];
         }
+        cout << '\n';
     }
     return 0;
 }
