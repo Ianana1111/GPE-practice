@@ -4,43 +4,46 @@ using namespace std;
 #define ll long long
 #define vl vector<ll>
 #define pll pair<ll, ll>
-#define vll vector<pll>
 #define pb push_back
 #define mp make_pair
 #define f first 
 #define s second 
 
-vll tree[10001];
+vector<pll> road[10001];
 int ans = 0;
 
-int dfs(int tar, int from){
-    int road1 = 0, tmp = 0;
-    for(auto Pair: tree[tar]){
-        if(Pair.f!=from){
-            tmp = dfs(Pair.f, tar) + Pair.s;
-            ans = max(ans, tmp+road1);
-            road1 = max(road1, tmp);
+int find(int to, int from){
+    int aroad = 0, tmp;
+    for(auto &c: road[to]){
+        if(c.f != from){
+            tmp = find(c.f, to) + c.s;
+            ans = max(ans, tmp+aroad);
+            aroad = max(aroad, tmp);
         }
     }
-    return road1;
+    return aroad;
 }
 
 int main(){
-    while(1){
-        for(int i=0; i<10001; i++) tree[i].clear();
-        ans = 0;
-        string s;
-        getline(cin, s);
-        while(s.size()>0 && !cin.eof()){
-            int x, y, v;
+    ios;
+    string b;
+    while(getline(cin, b) && b!= ""){  
+        for(int i=1; i<=10000; i++) road[i].clear();
+        int v1, v2, dis;
+        stringstream ss;
+        ss << b; ss >> v1 >> v2 >> dis;
+        road[v1].pb(mp(v2, dis));
+        road[v2].pb(mp(v1, dis));
+        string a;
+        while(getline(cin, a) && a!=""){
+            int v1, v2, dis;
             stringstream ss;
-            ss<<s;
-            ss>>x>>y>>v;
-            tree[x].pb(mp(y, v));
-            tree[y].pb(mp(x, v));
-            getline(cin, s);
+            ss << a; ss >> v1 >> v2 >> dis;
+            road[v1].pb(mp(v2, dis));
+            road[v2].pb(mp(v1, dis));
         }
-        dfs(1, 0);
+        ans = 0;
+        find(1, -1);
         cout << ans << '\n';
     }
     return 0;

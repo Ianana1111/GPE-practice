@@ -6,6 +6,7 @@ using namespace std;
 map<string, int> rec;
 
 int main(){
+    ios;
     int a, b; cin >> a >> b;
     for(int i=0; i<a; i++){
         string x; int y;
@@ -26,7 +27,7 @@ int main(){
                 }else if(input[i]==' ' && tmp!=""){
                     if(rec.count(tmp)){
                         ans+=rec[tmp];
-                        cout << tmp << " ";
+                       // cout << tmp << " ";
                     }
                     tmp = "";
                 }

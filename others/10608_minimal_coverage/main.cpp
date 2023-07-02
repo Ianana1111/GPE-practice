@@ -49,9 +49,12 @@ void solve(){
 int main(){
     ios;
     int n; cin >> n;
+    string line;
+    getline(cin, line);
+    getline(cin, line);
     while(n--){
         solve();
-        cout << '\n';
+        if(n) cout << '\n';
     }
     return 0;
 }

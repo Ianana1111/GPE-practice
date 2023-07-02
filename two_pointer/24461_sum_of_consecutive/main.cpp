@@ -5,31 +5,22 @@ using namespace std;
 #define vl vector<ll>
 #define pb push_back
 
-int prime[10] = {2, 3, 5, 7};
+vl rec;
+bool check[10001];
 
 int main(){
-    //ios;
-    vl rec;
-    bool check[10001];
+    ios;
     memset(check, false, sizeof(check));
-    for(int i=0; i<4; i++){
-        for(int j=2; j<=100; j++){
-            if(j%prime[i]==0 && j/prime[i]!=1) check[j] = true;
+    for(int i=2; i<=10000; i++){
+        if(!check[i]){
+            rec.pb(i);
+            for(int j=i*2; j<=10000; j+=i)
+                check[j] = true;
         }
     }
-    for(int i=2; i<=100; i++) if(!check[i]) rec.pb(i);
-    
     int size = rec.size();
-    for(int i=0; i<size; i++){
-        for(int j=2; j<=10000; j++){
-            if(j%rec[i]==0 && j/rec[i]!=1) check[j] = true;
-        }
-    }
-    for(int i=100; i<=10000; i++) if(!check[i]) rec.pb(i);
-    size = rec.size();
     int n; 
-    while(cin >> n){
-        if(n==0) return 0;
+    while(cin >> n && n){
         if(n==2 || n==3){
             cout << 1 << '\n';
             continue;

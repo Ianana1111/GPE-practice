@@ -1,16 +1,17 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define ios ios:;sync_with_sstdio(0); cin.tie(0); cout.tie(0);
+#define ios ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 #define ll long long
 #define vl vector<ll>
 #define vvl vector<vl>
 #define pb push_back
 
 int main(){
+    ios;
     int x, y;
     int map[102][102];
     int max_map[102][102];
-    while(cin >> x >> y && (x||y)){
+    while(cin >> x >> y && x && y){
         memset(max_map, 0, sizeof(max_map));
         memset(map, 0, sizeof(map));
         for(int i=1; i<=x; i++){

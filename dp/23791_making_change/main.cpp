@@ -15,6 +15,7 @@ int coin[6] = {1, 2, 4, 10, 20, 40}; //100
 int arr[6];
 
 int main(){
+    ios;
     double tar;
     int change[101];
     memset(change, 0, sizeof(change));
@@ -30,9 +31,9 @@ int main(){
         }
     }
     
-    while(cin >> arr[0] >> arr[1] >> arr[2] >> arr[3] >> arr[4] >> arr[5] >> tar){
-        if(arr[0]+arr[1]+arr[2]+arr[3]+arr[4]+arr[5]==0);
-
+    while(cin >> arr[0] >> arr[1] >> arr[2] >> arr[3] >> arr[4] >> arr[5]){
+        if((arr[0]+arr[1]+arr[2]+arr[3]+arr[4]+arr[5])==0) return 0;
+        cin >> tar;
         int tmp = (tar+eps)*100, tot=0; tmp/=5;
         for(int i=0; i<6; i++) tot+=(arr[i]*coin[i]);
 
@@ -53,6 +54,7 @@ int main(){
         }
         int ans = 100000;
         for(int i=tmp; i<=tot; i++) ans = min(ans, dp[i]+change[i-tmp]);
-        cout << ans << '\n';
+        cout << setw(3) << ans << '\n';
     }
+    return 0;
 }

@@ -34,24 +34,19 @@ void solve(){
 
 int main(){
     ios;
-    memset(isprime, false, sizeof(isprime));
-    arr.pb(2);
-    for(int i=4; i<=1000000; i+=2) isprime[i] = true;
-    for(int i=3; i<=1000; i+=2){
-        if(!isprime[i]){
-            arr.pb(i);
-            for(int j=i*2; j<=1000; j+=i)
-                isprime[j] = true;
-        }
+    memset(isprime, true, sizeof(isprime));
+    for(int i=2; i<=1000000; i++){
+        if(isprime[i])
+            for(int j=2; j*i<=1000000; j++)
+                isprime[i*j] = false;
     }
-    memset(sum, 0, sizeof(sum));
-    for(int i=1; i<=1000000; i++){
+        memset(sum, 0, sizeof(sum));
+    for(int i=2; i<=1000000; i++){
         int num = calcu(i);
-        if(!isprime[num] && check(i))
-            sum[i] = sum[i-1]+1;
-        else
-            sum[i] = sum[i-1];
+        if(isprime[num] && isprime[i])
+            sum[i] = 1;
     }
+    for(int i=1; i<=1000000; i++) sum[i]+=sum[i-1];
     int n; scanf("%d", &n);
     while(n--){
         solve();

@@ -14,15 +14,15 @@ int main(){
     vl arr;  // 這位啥不能放在check前面，沙小
     
     memset(check, false, sizeof(check));
-    for(int i=2; i<=40001; i++){
+    for(int i=2; i<=40000; i++){
         if(!check[i]){
             arr.pb(i);
-            for(int j=i*2; j<=40001; j+=i)
+            for(int j=i*2; j<=40000; j+=i)
                 check[j] = true;
         }
     }
     //cout << check[2];
-    for(int i=0; i<10; i++) cout << arr[i] << " ";
+    //for(int i=0; i<10; i++) cout << arr[i] << " ";
     //cout << arr[0] << " " << arr[1];
     int n;
     while(cin >> n && n){

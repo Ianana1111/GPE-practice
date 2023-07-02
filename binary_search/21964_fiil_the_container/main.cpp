@@ -5,6 +5,7 @@ using namespace std;
 #define vl vector<ll>
 
 int main(){
+    ios;
     int n, m;
     while(cin >> n >> m){
         vl ves(n);

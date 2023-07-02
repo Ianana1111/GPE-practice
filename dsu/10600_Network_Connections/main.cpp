@@ -13,18 +13,17 @@ int find(int now){
 }
 
 void solve(){
-    int n;
-    cin >> n;
-    anes.clear();
+    int n; cin >> n;
     vector<ll> counting(2);
+
+    anes.clear();
     anes.resize(n+1);
     for(int i=1; i<=n; i++) anes[i]=-1;
+
     string s;
     getline(cin, s);
-    getline(cin, s);
-    while(s.size()>0){
-        char a;
-        int i, j;
+    while(getline(cin, s) && s!=""){
+        char a; int i, j;
         stringstream ss;
         ss<<s;
         ss>>a>>i>>j;
@@ -43,17 +42,20 @@ void solve(){
         }else{
             a1==a2? counting[0]++: counting[1]++; 
         }
-        getline(cin, s);
     }
     cout << counting[0] << ',' << counting[1] << '\n';
     return;
 }
 
 int main(){
+    ios;
     int n; cin >> n;
+    string line;
+    getline(cin, line);
+    getline(cin, line);
     while(n--){
         solve();
-        cout << '\n';
+        if(n) cout << '\n';
     }
     return 0;
 }

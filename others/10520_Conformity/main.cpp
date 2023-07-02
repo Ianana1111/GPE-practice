@@ -9,23 +9,25 @@ using namespace std;
 #define f first
 
 void solve(int n){
+    ios;
     map<vl, ll> record;
     map<vl, ll>::iterator iter;
+    ll mx = -1;
     for(int i=0; i<n; i++){
         vl frosh(5);
         for(int j=0; j<5; j++){
             cin >> frosh[j];
         }
         sort(frosh.begin(), frosh.end());
-        record[frosh]=1;
+        if(record.count(frosh))
+            record[frosh]++;
+        else 
+            record[frosh]=1;
+        mx = max(mx, record[frosh]);
     }
     int ans = 0;
-    for(iter = record.begin(); iter!=record.end(); iter++){
-        vl tmp = iter->f;
-        if(iter->s == 1) ans++;
-        for(int i=0; i<5; i++){
-            cout << tmp[i] << " \n"[i==4];
-        }
+    for(auto &c : record){
+        if(c.s == mx) ans+=c.s;
     }
     cout << ans << '\n';
 }

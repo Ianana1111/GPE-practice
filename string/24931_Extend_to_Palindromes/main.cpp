@@ -8,6 +8,7 @@ using namespace std;
 #define s second 
 
 int main(){
+    ios;
     string s;
     while(cin >> s){
         int size = s.size();

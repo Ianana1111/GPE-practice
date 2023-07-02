@@ -17,6 +17,7 @@ int calcu(int x){
 }
 
 int main(){
+    ios;
     vl prim;
     memset(arr, 0, sizeof(arr));
     for(int i=2; i<=32000; i++){
